@@ -8,17 +8,17 @@
 <script>
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
-
 export default {
   name: 'App',
   components: {
-    HeaderComponent,
-    MainComponent
+    MainComponent,
+    HeaderComponent
   }
 }
 </script>
 
-<style lang="scss">
+<style lang,
+    HeaderComponent="scss">
 @import './assets/style/general';
 @import './assets/style/utils'
 </style>

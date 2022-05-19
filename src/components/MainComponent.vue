@@ -1,5 +1,7 @@
 <template>
     <div>
+        <SelectComponent
+            @changeGenre='changeSelect' />
         <div class="container">
             <div class="row">
                 <CardComponent
@@ -12,11 +14,13 @@
 
 <script>
 import axios from 'axios';
+import SelectComponent from "./SelectComponent.vue";
 import CardComponent from './CardComponent.vue'
 
 export default {
 name:'MainComponent',
 components:{
+    SelectComponent,
     CardComponent,
 },
 data(){
@@ -28,6 +32,7 @@ data(){
 mounted(){
         this.getApi();
 },
+
 methods:{
     getApi(){
         axios.get(this.apiUrl)
@@ -38,6 +43,19 @@ methods:{
         .catch(e=>{
             console.log(e);
         })
+    }
+},
+
+computed:{
+    changeArrayMusic(genre){
+        let filteredArray=[];
+        if(option.value=== all){
+            filteredArray=this.cardList;
+        }else{
+            filteredArray=this.cardList.filter(card=>{
+                return card.genre.toUpperCase()===option.value.toUpperCase()
+            })
+        }
     }
 }
 }
