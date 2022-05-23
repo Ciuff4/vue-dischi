@@ -1,11 +1,12 @@
 <template>
     <div>
         <SelectComponent
-            @changeGenre='changeSelect' />
+        @changeGenre="changeGenre"
+        />
         <div class="container">
             <div class="row">
                 <CardComponent
-                v-for="(card , index) in cardList" :key="`cards-${index}`"
+                v-for="( card , index) in newArray" :key="`cards-${index}`"
                 :cardItem='card' />
             </div>
         </div>
@@ -26,11 +27,14 @@ components:{
 data(){
     return{
         apiUrl:'https://flynn.boolean.careers/exercises/api/array/music',
-        cardList:[]
+        cardList:[],
+        genere:'',
+        newArray:[]
     }
 },
 mounted(){
         this.getApi();
+        this.changeGenre(this.selectedGenre);
 },
 
 methods:{
@@ -43,19 +47,27 @@ methods:{
         .catch(e=>{
             console.log(e);
         })
-    }
-},
+    },
+    changeGenre(selectedGenre){
+        this.genere=selectedGenre;
+    },
 
+    
+
+},
 computed:{
-    changeArrayMusic(genre){
-        let filteredArray=[];
-        if(option.value=== all){
-            filteredArray=this.cardList;
+    cambioArray(){
+        if (this.genere===undefined) {
+            return this.cardList
         }else{
-            filteredArray=this.cardList.filter(card=>{
-                return card.genre.toUpperCase()===option.value.toUpperCase()
-            })
+            for (let cardItem of this.cardList) {
+            if (cardItem.genre===this.genere) {
+                this.newArray.push(cardItem)
+                }
+            }
+            return this.newArray
         }
+        
     }
 }
 }

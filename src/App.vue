@@ -10,15 +10,14 @@ import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 export default {
   name: 'App',
-  components: {
+  components:{
     MainComponent,
     HeaderComponent
   }
 }
 </script>
 
-<style lang,
-    HeaderComponent="scss">
+<style lang="scss">
 @import './assets/style/general';
 @import './assets/style/utils'
 </style>
